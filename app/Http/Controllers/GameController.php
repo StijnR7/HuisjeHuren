@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    // ✅ API: Start een nieuw spel (JSON response)
+    
    public function bladeGame(Request $request)
 {
-    // Haal game id uit sessie of query, bijvoorbeeld:
     $gameId = $request->session()->get('game_id');
 
     $game = null;
@@ -47,7 +46,7 @@ public function startGameBlade(Request $request)
         'is_won' => null,
     ]);
 
-    // Sla game id op in sessie zodat bladeGame hem kan laden
+    
     $request->session()->put('game_id', $game->id);
 
     return redirect()->route('galgje.view');
