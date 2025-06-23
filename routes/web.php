@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use \App\Http\Controllers\GameController;
-
+use App\Http\Controllers\GameController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +13,18 @@ use \App\Http\Controllers\GameController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/galgje', [GameController::class, 'bladeGame'])->name('galgje.view');
+    Route::post('/galgje/start', [GameController::class, 'startGameBlade'])->name('galgje.start');
+    Route::post('/galgje/guess/{game}', [GameController::class, 'guessLetterBlade'])->name('galgje.guess');
+});
 
-Route::get('/galgje', [GameController::class, 'bladeGame'])->name('galgje.view');
-Route::post('/galgje/start', [GameController::class, 'startGameBlade'])->name('galgje.start');
-Route::post('/galgje/{game}/guess', [GameController::class, 'guessLetterBlade'])->name('galgje.guess');
+require __DIR__.'/auth.php';

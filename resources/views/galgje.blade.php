@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Galgje</h1>
-
+    <h2>Won games: {{auth()->user()->wonGames}}</h2>
     @if (!isset($game))
         <form method="POST" action="{{ route('galgje.start') }}">
             @csrf

@@ -69,6 +69,7 @@ public function guessLetterBlade(Request $request, Game $game)
         if ($allGuessed) {
             $game->is_finished = true;
             $game->is_won = true;
+            Auth()->user()->increment('wonGames'); // Verhoog het aantal gewonnen spellen voor de gebruiker
         } elseif ($game->incorrect_guesses >= 12) {
             $game->is_finished = true;
             $game->is_won = false;
