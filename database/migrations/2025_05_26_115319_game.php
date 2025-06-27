@@ -20,6 +20,8 @@ class Game extends Migration
         $table->unsignedInteger('incorrect_guesses')->default(0);
         $table->boolean('is_finished')->default(false);
         $table->boolean('is_won')->nullable();
+        $table->unsignedBigInteger('player1');// ID van de eerste speler
+        $table->unsignedBigInteger('player2');// ID van de tweede speler
         $table->timestamps();
     });
 }

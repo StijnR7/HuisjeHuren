@@ -13,5 +13,7 @@ class Game extends Model
         'incorrect_guesses',
         'is_finished',
         'is_won',
+        'player1',
+        'player2',
     ];
 }
